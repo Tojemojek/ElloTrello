@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
-import pl.kostrowski.finalny.restclients.PathElements;
+import pl.kostrowski.finalny.restclients.QueryPathElements;
 import pl.kostrowski.finalny.restclients.dto.TrelloCardDto;
 import pl.kostrowski.finalny.services.QueryBuilder;
 
@@ -25,25 +25,18 @@ public class TrelloCardClientImpl implements TrelloCardClient {
     }
 
     @Override
-    public List<TrelloCardDto> findAllForList(String listId) {
-
-        String request = PathElements.SINGLE_LIST.getPathParam() + listId + "/cards";
+    public List<TrelloCardDto> findAllCardsWithListId(String listId) {
+        String request = QueryPathElements.ALL_CARDS_FROM_LIST.replaceListId(listId);
         String queryPath = queryBuilder.createQueryPath(request);
         ResponseEntity<TrelloCardDto[]> responseEntity = restTemplate.getForEntity(queryPath, TrelloCardDto[].class);
-
         return CollectionUtils.arrayToList(responseEntity.getBody());
-
     }
 
     @Override
     public TrelloCardDto saveToTrello(TrelloCardDto trelloCardDto) {
-
-        String request = PathElements.ADD_SINGLE_CARD.getPathParam() + "?idList=" + trelloCardDto.getListId();
-
+        String request = QueryPathElements.ADD_SINGLE_CARD.replaceListId(trelloCardDto.getListId());
         String queryPath = queryBuilder.createQueryPath(request);
-
         ResponseEntity<TrelloCardDto> cardDtoResponseEntity = restTemplate.postForEntity(queryPath, trelloCardDto, TrelloCardDto.class);
-
         return cardDtoResponseEntity.getBody();
     }
 }

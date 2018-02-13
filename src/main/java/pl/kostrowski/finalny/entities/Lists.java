@@ -1,6 +1,8 @@
 package pl.kostrowski.finalny.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,8 +14,14 @@ public class Lists {
     @Column(name = "id")
     private String id;
 
-    @Column
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "position_on_Board")
+    private Double positionOnBoard;
+
+    @Column(name = "board_id")
+    private String boardId;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "listId")
     private List<Cards> cards;
@@ -49,5 +57,21 @@ public class Lists {
 
     public void setCards(List<Cards> cards) {
         this.cards = cards;
+    }
+
+    public Double getPositionOnBoard() {
+        return positionOnBoard;
+    }
+
+    public void setPositionOnBoard(Double positionOnBoard) {
+        this.positionOnBoard = positionOnBoard;
+    }
+
+    public String getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(String boardId) {
+        this.boardId = boardId;
     }
 }

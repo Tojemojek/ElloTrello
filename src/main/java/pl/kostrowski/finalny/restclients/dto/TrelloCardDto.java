@@ -13,16 +13,25 @@ public class TrelloCardDto {
     @JsonProperty("desc")
     private String description;
 
+    @JsonProperty("due")
+    private String dueDate;
+
     @JsonProperty("idList")
     private String listId;
+
+    @JsonProperty("pos")
+    private Double positionOnList;
 
     public TrelloCardDto() {
     }
 
-    public TrelloCardDto(String id, String name, String description) {
+    public TrelloCardDto(String id, String name, String description, String dueDate, String listId, Double positionOnList) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.dueDate = dueDate;
+        this.listId = listId;
+        this.positionOnList = positionOnList;
     }
 
     public String getId() {
@@ -49,12 +58,28 @@ public class TrelloCardDto {
         this.description = description;
     }
 
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
     public String getListId() {
         return listId;
     }
 
     public void setListId(String listId) {
         this.listId = listId;
+    }
+
+    public Double getPositionOnList() {
+        return positionOnList;
+    }
+
+    public void setPositionOnList(Double positionOnList) {
+        this.positionOnList = positionOnList;
     }
 }
 

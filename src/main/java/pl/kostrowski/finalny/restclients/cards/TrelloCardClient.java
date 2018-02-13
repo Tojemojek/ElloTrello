@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TrelloCardClient {
 
-    public List<TrelloCardDto> findAllForList(String listId);
+    public List<TrelloCardDto> findAllCardsWithListId(String listId);
 
     public TrelloCardDto saveToTrello(TrelloCardDto trelloCardDto);
 

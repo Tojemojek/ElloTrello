@@ -6,8 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
-import pl.kostrowski.finalny.restclients.PathElements;
+import pl.kostrowski.finalny.restclients.QueryPathElements;
 import pl.kostrowski.finalny.restclients.dto.TrelloBoardDto;
+import pl.kostrowski.finalny.restclients.dto.TrelloCardDto;
+import pl.kostrowski.finalny.restclients.dto.TrelloListDto;
 import pl.kostrowski.finalny.services.QueryBuilder;
 
 import java.util.List;
@@ -25,23 +27,34 @@ public class TrelloBoardClientImpl implements TrelloBoardClient {
     }
 
     @Override
-    public List<TrelloBoardDto> findAll() {
+    public List<TrelloBoardDto> findAllBoards() {
 
-        String request = PathElements.ALL_BOARDS.getPathParam();
-
+        String request = QueryPathElements.ALL_BOARDS.getPathParam();
         String queryPath = queryBuilder.createQueryPath(request);
-
         ResponseEntity<TrelloBoardDto[]> responseEntity = restTemplate.getForEntity(queryPath, TrelloBoardDto[].class);
         return CollectionUtils.arrayToList(responseEntity.getBody());
     }
 
     @Override
-    public TrelloBoardDto findById(String id) {
-
-        String request = PathElements.SINGLE_BOARD.getPathParam() + id;
-
+    public List<TrelloListDto> findAllListsByBoardId(String boardId) {
+        String request = QueryPathElements.ALL_LISTS_FROM_BOARD.replaceBoardId(boardId);
         String queryPath = queryBuilder.createQueryPath(request);
+        ResponseEntity<TrelloListDto[]> responseEntity = restTemplate.getForEntity(queryPath, TrelloListDto[].class);
+        return CollectionUtils.arrayToList(responseEntity.getBody());
+    }
 
+    @Override
+    public List<TrelloCardDto> findAllCardsByBoardId(String boardId) {
+        String request = QueryPathElements.ALL_CARDS_FROM_BOARD.replaceBoardId(boardId);
+        String queryPath = queryBuilder.createQueryPath(request);
+        ResponseEntity<TrelloCardDto[]> responseEntity = restTemplate.getForEntity(queryPath, TrelloCardDto[].class);
+        return CollectionUtils.arrayToList(responseEntity.getBody());
+    }
+
+    @Override
+    public TrelloBoardDto findBoardById(String boardId) {
+        String request = QueryPathElements.SINGLE_BOARD.replaceBoardId(boardId);
+        String queryPath = queryBuilder.createQueryPath(request);
         TrelloBoardDto trelloBoardDto = restTemplate.getForObject(queryPath, TrelloBoardDto.class);
         return trelloBoardDto;
     }

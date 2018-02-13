@@ -39,12 +39,12 @@ public class BoardsController {
 
     @RequestMapping(value = "/{id}")
     public TrelloBoardDto findByBoardId(@PathVariable("id") String id) {
-        return trelloBoardClient.findById(id);
+        return trelloBoardClient.findBoardById(id);
     }
 
     @RequestMapping(value = "/list/{id}/cards")
     public List<TrelloCardDto> findCardsByBoardId(@PathVariable("id") String id) {
-        return trelloCardClient.findAllForList(id);
+        return trelloCardClient.findAllCardsWithListId(id);
     }
 
     @RequestMapping(value = "/list/cards", method = RequestMethod.POST)

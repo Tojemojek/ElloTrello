@@ -7,7 +7,6 @@ import java.util.List;
 public interface BoardService {
 
     public void saveAllToDatabase(List<Board> boards);
-
     public List<Board> getAllFromTrelloAndPersist();
 }
 

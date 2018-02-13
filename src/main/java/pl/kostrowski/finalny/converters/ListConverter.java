@@ -23,12 +23,16 @@ public class ListConverter {
 
         result.setId(toConvert.getId());
         result.setName(toConvert.getName());
+        result.setBoardId(toConvert.getTrelloBoardId());
+        result.setPositionOnBoard(toConvert.getPositionOnBoard());
 
         List<Cards> listOfCards = new LinkedList<>();
 
-        for (TrelloCardDto trelloCardDto : toConvert.getCards()) {
-            Cards convertedList = cardConverter.convert(trelloCardDto);
-            listOfCards.add(convertedList);
+        if (toConvert.getCards() != null) {
+            for (TrelloCardDto trelloCardDto : toConvert.getCards()) {
+                Cards convertedList = cardConverter.convert(trelloCardDto);
+                listOfCards.add(convertedList);
+            }
         }
         result.setCards(listOfCards);
         return result;

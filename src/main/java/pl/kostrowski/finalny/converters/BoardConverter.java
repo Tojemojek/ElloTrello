@@ -16,7 +16,7 @@ public class BoardConverter {
     @Autowired
     ListConverter listConverter;
 
-    public Board convert (TrelloBoardDto toConvert, List<TrelloListDto> listToConvert){
+    public Board convert(TrelloBoardDto toConvert, List<TrelloListDto> listToConvert) {
 
         Board result = new Board();
 
@@ -24,14 +24,16 @@ public class BoardConverter {
         result.setName(toConvert.getName());
         result.setDescription(toConvert.getDescription());
 
-        List<Lists> listOfLists = new LinkedList<>();
+        List<Lists> listsFromTrello = new LinkedList<>();
 
-        for (TrelloListDto trelloListDto : listToConvert) {
-            Lists convertedList = listConverter.convert(trelloListDto);
-            listOfLists.add(convertedList);
+        if (listToConvert != null) {
+            for (TrelloListDto trelloListDto : listToConvert) {
+                Lists convertedList = listConverter.convert(trelloListDto);
+                listsFromTrello.add(convertedList);
+            }
         }
 
-        result.setLists(listOfLists);
+        result.setLists(listsFromTrello);
 
         return result;
     }

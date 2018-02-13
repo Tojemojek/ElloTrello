@@ -18,8 +18,7 @@ public class Board {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "board_id", nullable = false)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "boardId")
     private List<Lists> lists;
 
     public Board() {
