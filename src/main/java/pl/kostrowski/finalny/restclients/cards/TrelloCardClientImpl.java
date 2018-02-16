@@ -2,6 +2,8 @@ package pl.kostrowski.finalny.restclients.cards;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -38,5 +40,16 @@ public class TrelloCardClientImpl implements TrelloCardClient {
         String queryPath = queryBuilder.createQueryPath(request);
         ResponseEntity<TrelloCardDto> cardDtoResponseEntity = restTemplate.postForEntity(queryPath, trelloCardDto, TrelloCardDto.class);
         return cardDtoResponseEntity.getBody();
+    }
+
+    @Override
+    public TrelloCardDto updateToTrelo(TrelloCardDto trelloCardDto) {
+
+        String request = QueryPathElements.UPDATE_SINGLE_CARD.replaceCardId(trelloCardDto.getId());
+        String queryPath = queryBuilder.createQueryPath(request);
+        HttpEntity<TrelloCardDto> httpEntity = new HttpEntity<>(trelloCardDto, null);
+        ResponseEntity<TrelloCardDto> exchange = restTemplate.exchange(queryPath, HttpMethod.PUT, httpEntity, TrelloCardDto.class);
+        return exchange.getBody();
+
     }
 }

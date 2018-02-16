@@ -1,7 +1,7 @@
 package pl.kostrowski.finalny.converters;
 
 import org.springframework.stereotype.Component;
-import pl.kostrowski.finalny.entities.Cards;
+import pl.kostrowski.finalny.entities.MyCard;
 import pl.kostrowski.finalny.restclients.dto.TrelloCardDto;
 
 import java.time.LocalDateTime;
@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 @Component
 public class CardConverter {
 
-    public Cards convert(TrelloCardDto toConvert) {
+    public MyCard convert(TrelloCardDto toConvert) {
 
-        Cards result = new Cards();
+        MyCard result = new MyCard();
 
         result.setId(toConvert.getId());
         result.setName(toConvert.getName());

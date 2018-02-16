@@ -1,12 +1,19 @@
 package pl.kostrowski.finalny.services;
 
-import pl.kostrowski.finalny.entities.Board;
+import pl.kostrowski.finalny.entities.MyBoard;
+import pl.kostrowski.finalny.entities.MyCard;
 
 import java.util.List;
 
 public interface BoardService {
 
-    public void saveAllToDatabase(List<Board> boards);
-    public List<Board> getAllFromTrelloAndPersist();
+    public List<MyBoard> getAllFromTrelloAndPersist();
+
+    public void saveAllToDatabase(List<MyBoard> myBoards);
+
+    public List<MyBoard> getAllFromDatabase();
+
+    public MyBoard getBoardById(String id);
+
 }
 

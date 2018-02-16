@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "board")
-public class Board {
+public class MyBoard {
 
     @Id
     @Column(name = "id")
@@ -19,12 +19,12 @@ public class Board {
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "boardId")
-    private List<Lists> lists;
+    private List<MyList> lists;
 
-    public Board() {
+    public MyBoard() {
     }
 
-    public Board(String id, String name, String description, List<Lists> lists) {
+    public MyBoard(String id, String name, String description, List<MyList> lists) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -55,11 +55,11 @@ public class Board {
         this.description = description;
     }
 
-    public List<Lists> getLists() {
+    public List<MyList> getLists() {
         return lists;
     }
 
-    public void setLists(List<Lists> lists) {
+    public void setLists(List<MyList> lists) {
         this.lists = lists;
     }
 }

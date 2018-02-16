@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "cards")
-public class Cards {
+public class MyCard {
 
     @Id
     @Column(name = "id")
@@ -30,10 +30,10 @@ public class Cards {
     @Column(name = "position")
     private Double position;
 
-    public Cards() {
+    public MyCard() {
     }
 
-    public Cards(String id, String name, String description, String listId, LocalDateTime dueDate, Double position) {
+    public MyCard(String id, String name, String description, String listId, LocalDateTime dueDate, Double position) {
         this.id = id;
         this.name = name;
         this.description = description;

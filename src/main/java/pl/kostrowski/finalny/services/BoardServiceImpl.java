@@ -3,7 +3,8 @@ package pl.kostrowski.finalny.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.kostrowski.finalny.converters.BoardConverter;
-import pl.kostrowski.finalny.entities.Board;
+import pl.kostrowski.finalny.entities.MyBoard;
+import pl.kostrowski.finalny.entities.MyCard;
 import pl.kostrowski.finalny.repository.BoardRepository;
 import pl.kostrowski.finalny.restclients.boards.TrelloBoardClient;
 import pl.kostrowski.finalny.restclients.dto.TrelloBoardDto;
@@ -28,26 +29,49 @@ public class BoardServiceImpl implements BoardService {
     BoardConverter boardConverter;
 
     @Override
-    public void saveAllToDatabase(List<Board> boards) {
-        boardRepository.save(boards);
+    public void saveAllToDatabase(List<MyBoard> myBoards) {
+        boardRepository.save(myBoards);
     }
 
     @Override
-    public List<Board> getAllFromTrelloAndPersist() {
+    public List<MyBoard> getAllFromTrelloAndPersist() {
 
         List<TrelloBoardDto> allBoardsDto = trelloBoardClient.findAllBoards();
-        List<Board> allBoards = new LinkedList<>();
+        List<MyBoard> allMyBoards = new LinkedList<>();
 
         for (TrelloBoardDto trelloBoardDto : allBoardsDto) {
             String boardId = trelloBoardDto.getId();
             List<TrelloCardDto> allCardsFromBoard = getAllCardsFromTrelloForBoardId(boardId);
             List<TrelloListDto> allListsFromBoard = getListsFromTrelloForBoardId(boardId, allCardsFromBoard);
-            Board converted = boardConverter.convert(trelloBoardDto, allListsFromBoard);
-            allBoards.add(converted);
+            MyBoard converted = boardConverter.convert(trelloBoardDto, allListsFromBoard);
+            allMyBoards.add(converted);
         }
-        boardRepository.save(allBoards);
-        return allBoards;
+        boardRepository.save(allMyBoards);
+        return allMyBoards;
     }
+
+    @Override
+    public List<MyBoard> getAllFromDatabase() {
+
+        List<MyBoard> all = (List<MyBoard>) boardRepository.findAll();
+
+        return all;
+    }
+
+    @Override
+    public MyBoard getBoardById(String id) {
+
+        MyBoard fromDatabase;
+        try {
+            fromDatabase = boardRepository.findOne(id);
+        } catch (Exception e){
+            fromDatabase = new MyBoard();
+        }
+
+        return fromDatabase;
+    }
+
+
 
     private List<TrelloCardDto> getAllCardsFromTrelloForBoardId(String boardId) {
         List<TrelloCardDto> allCardsForBoard = trelloBoardClient.findAllCardsByBoardId(boardId);

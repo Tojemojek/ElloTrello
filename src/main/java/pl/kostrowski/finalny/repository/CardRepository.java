@@ -1,7 +1,13 @@
 package pl.kostrowski.finalny.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import pl.kostrowski.finalny.entities.Cards;
+import pl.kostrowski.finalny.entities.MyCard;
 
-public interface CardRepository extends CrudRepository<Cards, String> {
+import java.util.List;
+
+public interface CardRepository extends CrudRepository<MyCard, String> {
+
+    List<MyCard> getAllByListId (String listId);
 }
+
+

@@ -1,11 +1,16 @@
 package pl.kostrowski.finalny.services;
 
-import pl.kostrowski.finalny.entities.Cards;
+import pl.kostrowski.finalny.entities.MyCard;
 import pl.kostrowski.finalny.restclients.dto.TrelloCardDto;
+
+import java.util.List;
 
 
 public interface CardService {
 
-    public Cards createNewCard(TrelloCardDto trelloCardDto);
+    public MyCard createNewCard(TrelloCardDto trelloCardDto);
 
+    public List<MyCard> getCardsByListId(String id);
+
+    public MyCard updateMyCard(TrelloCardDto trelloCardDto);
 }

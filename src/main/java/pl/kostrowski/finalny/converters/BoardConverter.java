@@ -2,8 +2,8 @@ package pl.kostrowski.finalny.converters;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.kostrowski.finalny.entities.Board;
-import pl.kostrowski.finalny.entities.Lists;
+import pl.kostrowski.finalny.entities.MyBoard;
+import pl.kostrowski.finalny.entities.MyList;
 import pl.kostrowski.finalny.restclients.dto.TrelloBoardDto;
 import pl.kostrowski.finalny.restclients.dto.TrelloListDto;
 
@@ -16,24 +16,24 @@ public class BoardConverter {
     @Autowired
     ListConverter listConverter;
 
-    public Board convert(TrelloBoardDto toConvert, List<TrelloListDto> listToConvert) {
+    public MyBoard convert(TrelloBoardDto toConvert, List<TrelloListDto> listToConvert) {
 
-        Board result = new Board();
+        MyBoard result = new MyBoard();
 
         result.setId(toConvert.getId());
         result.setName(toConvert.getName());
         result.setDescription(toConvert.getDescription());
 
-        List<Lists> listsFromTrello = new LinkedList<>();
+        List<MyList> myListFromTrello = new LinkedList<>();
 
         if (listToConvert != null) {
             for (TrelloListDto trelloListDto : listToConvert) {
-                Lists convertedList = listConverter.convert(trelloListDto);
-                listsFromTrello.add(convertedList);
+                MyList convertedList = listConverter.convert(trelloListDto);
+                myListFromTrello.add(convertedList);
             }
         }
 
-        result.setLists(listsFromTrello);
+        result.setLists(myListFromTrello);
 
         return result;
     }

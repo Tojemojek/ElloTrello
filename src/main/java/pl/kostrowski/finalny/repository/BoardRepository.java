@@ -1,8 +1,11 @@
 package pl.kostrowski.finalny.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import pl.kostrowski.finalny.entities.Board;
+import pl.kostrowski.finalny.entities.MyBoard;
+import pl.kostrowski.finalny.entities.MyCard;
 
-public interface BoardRepository extends CrudRepository<Board,String>{
+import java.util.List;
+
+public interface BoardRepository extends CrudRepository<MyBoard,String>{
 
 }

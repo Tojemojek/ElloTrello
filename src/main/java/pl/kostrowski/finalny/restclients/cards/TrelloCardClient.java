@@ -10,4 +10,7 @@ public interface TrelloCardClient {
 
     public TrelloCardDto saveToTrello(TrelloCardDto trelloCardDto);
 
+    public TrelloCardDto updateToTrelo(TrelloCardDto trelloCardDto);
+
+
 }

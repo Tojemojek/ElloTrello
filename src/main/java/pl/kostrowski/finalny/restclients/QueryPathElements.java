@@ -8,7 +8,9 @@ public enum QueryPathElements {
 
     SINGLE_BOARD("/1/boards/[boardId]"),
     ALL_CARDS_FROM_LIST("/1/lists/[listId]/cards"),
-    ADD_SINGLE_CARD("/1/cards?idList=[listId]");
+    ADD_SINGLE_CARD("/1/cards?idList=[listId]"),
+    UPDATE_SINGLE_CARD("/1/cards/[cardId]");
+
 
     String pathParam;
 
@@ -30,6 +32,10 @@ public enum QueryPathElements {
 
     public String replaceListId(String listId) {
         return this.pathParam.replace("[listId]", listId);
+    }
+
+    public String replaceCardId(String cardId){
+        return this.pathParam.replace("[cardId]", cardId);
     }
 
 

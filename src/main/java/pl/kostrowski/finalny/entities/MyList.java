@@ -1,14 +1,12 @@
 package pl.kostrowski.finalny.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "lists")
-public class Lists {
+public class MyList {
 
     @Id
     @Column(name = "id")
@@ -24,12 +22,12 @@ public class Lists {
     private String boardId;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "listId")
-    private List<Cards> cards;
+    private List<MyCard> cards;
 
-    public Lists() {
+    public MyList() {
     }
 
-    public Lists(String id, String name, List<Cards> cards) {
+    public MyList(String id, String name, List<MyCard> cards) {
         this.id = id;
         this.name = name;
         this.cards = cards;
@@ -51,11 +49,11 @@ public class Lists {
         this.name = name;
     }
 
-    public List<Cards> getCards() {
+    public List<MyCard> getCards() {
         return cards;
     }
 
-    public void setCards(List<Cards> cards) {
+    public void setCards(List<MyCard> cards) {
         this.cards = cards;
     }
 
