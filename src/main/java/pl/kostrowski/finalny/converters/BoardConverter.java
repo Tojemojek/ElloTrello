@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.kostrowski.finalny.entities.MyBoard;
 import pl.kostrowski.finalny.entities.MyList;
-import pl.kostrowski.finalny.restclients.dto.TrelloBoardDto;
-import pl.kostrowski.finalny.restclients.dto.TrelloListDto;
+import pl.kostrowski.finalny.restclients.trellomodel.TrelloBoardDto;
+import pl.kostrowski.finalny.restclients.trellomodel.TrelloListDto;
 
 import java.util.LinkedList;
 import java.util.List;

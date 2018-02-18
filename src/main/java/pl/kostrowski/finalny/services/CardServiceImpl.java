@@ -6,7 +6,7 @@ import pl.kostrowski.finalny.converters.CardConverter;
 import pl.kostrowski.finalny.entities.MyCard;
 import pl.kostrowski.finalny.repository.CardRepository;
 import pl.kostrowski.finalny.restclients.cards.TrelloCardClient;
-import pl.kostrowski.finalny.restclients.dto.TrelloCardDto;
+import pl.kostrowski.finalny.restclients.trellomodel.TrelloCardDto;
 
 import java.util.List;
 

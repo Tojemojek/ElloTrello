@@ -5,14 +5,13 @@ import org.springframework.stereotype.Component;
 import pl.kostrowski.finalny.converters.UserConverter;
 import pl.kostrowski.finalny.entities.MyUser;
 import pl.kostrowski.finalny.repository.MyUserRepository;
-import pl.kostrowski.finalny.restclients.dto.MyUserDto;
+import pl.kostrowski.finalny.dto.MyUserDto;
 import pl.kostrowski.finalny.services.BoardService;
 
 import javax.annotation.PostConstruct;
 
 @Component
 public class ElloTrelloInitializer {
-
 
     @Autowired
     BoardService boardService;
@@ -22,14 +21,6 @@ public class ElloTrelloInitializer {
 
     @PostConstruct
     private void initialize() {
-
         boardService.getAllFromTrelloAndPersist();
-
-        MyUserDto testowy = new MyUserDto("ko","k","o","dupadupa", "EAST", "TECHNICIAN");
-        UserConverter converter = new UserConverter();
-        MyUser converted = converter.convert(testowy);
-        myUserRepository.save(converted);
-
     }
-
 }

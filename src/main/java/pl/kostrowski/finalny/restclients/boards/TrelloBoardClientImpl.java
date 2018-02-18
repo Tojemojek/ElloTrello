@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 import pl.kostrowski.finalny.restclients.QueryPathElements;
-import pl.kostrowski.finalny.restclients.dto.TrelloBoardDto;
-import pl.kostrowski.finalny.restclients.dto.TrelloCardDto;
-import pl.kostrowski.finalny.restclients.dto.TrelloListDto;
+import pl.kostrowski.finalny.restclients.trellomodel.TrelloBoardDto;
+import pl.kostrowski.finalny.restclients.trellomodel.TrelloCardDto;
+import pl.kostrowski.finalny.restclients.trellomodel.TrelloListDto;
 import pl.kostrowski.finalny.services.QueryBuilder;
 
 import java.util.List;

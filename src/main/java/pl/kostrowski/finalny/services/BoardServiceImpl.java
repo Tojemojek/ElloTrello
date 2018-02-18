@@ -4,12 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.kostrowski.finalny.converters.BoardConverter;
 import pl.kostrowski.finalny.entities.MyBoard;
-import pl.kostrowski.finalny.entities.MyCard;
 import pl.kostrowski.finalny.repository.BoardRepository;
 import pl.kostrowski.finalny.restclients.boards.TrelloBoardClient;
-import pl.kostrowski.finalny.restclients.dto.TrelloBoardDto;
-import pl.kostrowski.finalny.restclients.dto.TrelloCardDto;
-import pl.kostrowski.finalny.restclients.dto.TrelloListDto;
+import pl.kostrowski.finalny.restclients.trellomodel.TrelloBoardDto;
+import pl.kostrowski.finalny.restclients.trellomodel.TrelloCardDto;
+import pl.kostrowski.finalny.restclients.trellomodel.TrelloListDto;
 
 import java.util.HashMap;
 import java.util.LinkedList;

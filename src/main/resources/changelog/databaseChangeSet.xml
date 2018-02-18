@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="KO" id="creationOfSchema">
+        <sql>CREATE SCHEMA IF NOT EXISTS `ellotrello`</sql>
+    </changeSet>
+
+    <changeSet author="KO" id="creationOfTables" runInTransaction="true">
+        <createTable schemaName="ellotrello"
+                     tableName="board">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createTable schemaName="ellotrello"
+                     tableName="cards">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="list_id" type="VARCHAR(255)"/>
+            <column name="due_date" type="TIMESTAMP"/>
+            <column name="position_on_list" type="DOUBLE"/>
+        </createTable>
+
+        <createTable schemaName="ellotrello"
+                     tableName="lists">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="position_on_board" type="DOUBLE"/>
+            <column name="board_id" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createTable schemaName="ellotrello"
+                     tableName="users">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="surname" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="region" type="VARCHAR(255)"/>
+            <column name="role" type="VARCHAR(255)"/>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet author="KO" id="foreignKeysOne">
+
+        <addForeignKeyConstraint baseTableSchemaName="ellotrello"
+                                 baseTableName="cards"
+                                 baseColumnNames="list_id"
+
+                                 constraintName="fk_in_cards_list_id"
+
+                                 referencedTableSchemaName="ellotrello"
+                                 referencedColumnNames="id"
+                                 referencedTableName="lists"/>
+
+        <addForeignKeyConstraint baseTableSchemaName="ellotrello"
+                                 baseTableName="lists"
+                                 baseColumnNames="board_id"
+
+                                 constraintName="fk_in_list_board_id"
+
+                                 referencedTableSchemaName="ellotrello"
+                                 referencedColumnNames="id"
+                                 referencedTableName="board"/>
+
+    </changeSet>
+
+    <changeSet author="KO" id="insertSomeUsers">
+        <insert schemaName="ellotrello" tableName="users">
+            <column name="id" value="ko"/>
+            <column name="name" value="k"/>
+            <column name="surname" value="o"/>
+            <column name="password" value="2e801e65dfc0ed17ff104628b6cddbb8"/>
+            <column name="region" value="EAST"/>
+            <column name="role" value="TECHNICIAN"/>
+        </insert>
+
+        <insert schemaName="ellotrello" tableName="users">
+            <column name="id" value="ar"/>
+            <column name="name" value="a"/>
+            <column name="surname" value="r"/>
+            <column name="password" value="2e801e65dfc0ed17ff104628b6cddbb8"/>
+            <column name="region" value="WEST"/>
+            <column name="role" value="SENIOR_TECHNICIAN"/>
+        </insert>
+
+    </changeSet>
+
+
+
+
+</databaseChangeLog>

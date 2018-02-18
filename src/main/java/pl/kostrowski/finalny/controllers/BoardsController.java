@@ -3,12 +3,7 @@ package pl.kostrowski.finalny.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.kostrowski.finalny.entities.MyBoard;
-import pl.kostrowski.finalny.entities.MyCard;
-import pl.kostrowski.finalny.restclients.boards.TrelloBoardClient;
-import pl.kostrowski.finalny.restclients.cards.TrelloCardClient;
-import pl.kostrowski.finalny.restclients.dto.TrelloCardDto;
 import pl.kostrowski.finalny.services.BoardService;
-import pl.kostrowski.finalny.services.CardService;
 
 import java.util.List;
 
@@ -30,6 +25,5 @@ public class BoardsController {
 
         return boardService.getBoardById(id);
     }
-
 
 }

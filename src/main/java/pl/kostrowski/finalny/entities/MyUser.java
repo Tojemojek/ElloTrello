@@ -3,7 +3,7 @@ package pl.kostrowski.finalny.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(schema = "ellotrello", name = "users")
 public class MyUser {
 
     @Id

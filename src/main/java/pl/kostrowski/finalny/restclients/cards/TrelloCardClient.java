@@ -1,6 +1,6 @@
 package pl.kostrowski.finalny.restclients.cards;
 
-import pl.kostrowski.finalny.restclients.dto.TrelloCardDto;
+import pl.kostrowski.finalny.restclients.trellomodel.TrelloCardDto;
 
 import java.util.List;
 

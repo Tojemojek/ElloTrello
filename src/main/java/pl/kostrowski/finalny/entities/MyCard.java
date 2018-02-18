@@ -1,14 +1,18 @@
 package pl.kostrowski.finalny.entities;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
-@Table(name = "cards")
+@Table(schema = "ellotrello", name = "cards")
 public class MyCard {
 
     @Id
@@ -27,7 +31,7 @@ public class MyCard {
     @Column(name = "due_date")
     private LocalDateTime dueDate;
 
-    @Column(name = "position")
+    @Column(name = "position_on_list")
     private Double position;
 
     public MyCard() {

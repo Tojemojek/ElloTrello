@@ -4,7 +4,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import pl.kostrowski.finalny.entities.MyUser;
 import pl.kostrowski.finalny.entities.Region;
 import pl.kostrowski.finalny.entities.Role;
-import pl.kostrowski.finalny.restclients.dto.MyUserDto;
+import pl.kostrowski.finalny.dto.MyUserDto;
 
 public class UserConverter {
 

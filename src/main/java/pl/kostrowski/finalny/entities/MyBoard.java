@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "board")
+@Table(schema = "ellotrello", name = "board")
 public class MyBoard {
 
     @Id

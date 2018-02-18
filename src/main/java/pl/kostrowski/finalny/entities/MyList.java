@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "lists")
+@Table(schema = "ellotrello", name = "lists")
 public class MyList {
 
     @Id
@@ -15,7 +15,7 @@ public class MyList {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "position_on_Board")
+    @Column(name = "position_on_board")
     private Double positionOnBoard;
 
     @Column(name = "board_id")

@@ -1,4 +1,4 @@
-package pl.kostrowski.finalny.restclients.dto;
+package pl.kostrowski.finalny.restclients.trellomodel;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

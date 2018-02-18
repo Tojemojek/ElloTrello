@@ -11,7 +11,6 @@ public enum QueryPathElements {
     ADD_SINGLE_CARD("/1/cards?idList=[listId]"),
     UPDATE_SINGLE_CARD("/1/cards/[cardId]");
 
-
     String pathParam;
 
     QueryPathElements(String pathParam) {
